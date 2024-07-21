@@ -11,12 +11,24 @@ return new class extends Migration
      */
     public function up(): void
     {
+        Schema::create('teams', function (Blueprint $table) {
+            $table->id();
+            $table->uuid();
+            $table->string('slug');
+            $table->string('name');
+            $table->string('division');
+            $table->boolean('active')->default(true);
+            $table->foreignId('user_id')->nullable()->constrained();
+            $table->timestamps();
+        });
+
         Schema::create('users', function (Blueprint $table) {
             $table->id();
             $table->string('name');
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
+            $table->boolean('admin')->default(false);
             $table->rememberToken();
             $table->timestamps();
         });
