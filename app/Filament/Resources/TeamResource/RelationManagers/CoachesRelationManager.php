@@ -22,14 +22,17 @@ class CoachesRelationManager extends RelationManager
                     ->columnSpanFull()
                     ->required()
                     ->maxLength(255),
-                Forms\Components\TextInput::make('email'),
-                Forms\Components\TextInput::make('phone'),
-                Forms\Components\Select::make('position')
-                    ->columnSpanFull()
-                    ->options([
-                        'Manager' => 'Manager',
-                        'Assistant Coach' => 'Assistant Coach',
-                        'Other' => 'Other'
+                Forms\Components\Grid::make(3)
+                    ->schema([
+                        Forms\Components\TextInput::make('email'),
+                        Forms\Components\TextInput::make('phone'),
+                        Forms\Components\Select::make('position')
+                            ->required()
+                            ->options([
+                                'Manager' => 'Manager',
+                                'Assistant Coach' => 'Assistant Coach',
+                                'Other' => 'Other'
+                            ]),
                     ]),
 
                 Forms\Components\RichEditor::make('bio')
